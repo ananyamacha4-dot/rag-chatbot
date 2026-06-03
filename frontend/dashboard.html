@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAG Assistant Dashboard</title>
+    <link rel="stylesheet" href="/ui/assets/app.css">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="sidebar">
+            <div class="brand">
+                <strong>RAG Assistant</strong>
+                <span>Document intelligence workspace</span>
+            </div>
+
+            <nav class="nav" aria-label="Dashboard navigation">
+                <button class="active" type="button" data-section-target="overview">Dashboard</button>
+                <button type="button" data-section-target="upload">PDF Upload</button>
+                <button type="button" data-section-target="documents">Documents</button>
+                <button type="button" data-section-target="chat">Chatbot</button>
+                <button type="button" data-section-target="history">Chat History</button>
+            </nav>
+
+            <div class="user-card">
+                <strong id="username">User</strong>
+                <span id="userMeta">Authenticated</span>
+                <button id="logoutButton" class="button-danger" type="button">Logout</button>
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <div>
+                    <h1 id="pageTitle">Dashboard</h1>
+                    <div class="section-subtitle">PostgreSQL-backed RAG chatbot platform</div>
+                </div>
+                <a class="button-secondary" href="/docs" target="_blank">API Docs</a>
+            </header>
+
+            <div class="content">
+                <section class="section active" data-section="overview">
+                    <div class="grid">
+                        <article class="stat-card">
+                            <span class="meta">Documents</span>
+                            <strong id="statsDocuments">0</strong>
+                        </article>
+                        <article class="stat-card">
+                            <span class="meta">Chat Records</span>
+                            <strong id="statsMessages">0</strong>
+                        </article>
+                        <article class="stat-card">
+                            <span class="meta">Indexed Chunks</span>
+                            <strong id="statsChunks">0</strong>
+                        </article>
+                    </div>
+                    <div class="panel">
+                        <h2>Workspace</h2>
+                        <p class="section-subtitle">Upload PDFs, review indexed documents, and ask grounded questions using your existing FastAPI and PostgreSQL backend.</p>
+                    </div>
+                </section>
+
+                <section class="section" data-section="upload">
+                    <div class="panel">
+                        <h2>Upload PDF</h2>
+                        <p class="section-subtitle">Drag and drop a PDF or choose one from your system.</p>
+                        <div id="dropZone" class="drop-zone">
+                            <div>
+                                <strong>Drop PDF here</strong>
+                                <p>or click to browse</p>
+                                <input id="fileInput" type="file" accept="application/pdf">
+                            </div>
+                        </div>
+                        <div class="progress" aria-label="Upload progress">
+                            <span id="progressBar"></span>
+                        </div>
+                        <p id="uploadStatus" class="section-subtitle"></p>
+                        <button id="uploadButton" type="button">Upload Selected PDF</button>
+                    </div>
+                </section>
+
+                <section class="section" data-section="documents">
+                    <div class="panel">
+                        <h2>Document Management</h2>
+                        <input id="documentSearch" class="input" type="search" placeholder="Search uploaded documents...">
+                    </div>
+                    <div id="documentsGrid" class="documents-grid"></div>
+                </section>
+
+                <section class="section" data-section="chat">
+                    <div class="chat-layout">
+                        <div class="chat-panel">
+                            <div id="chatLog" class="chat-log">
+                                <div class="empty">Ask a question from your uploaded documents.</div>
+                            </div>
+                            <form id="chatForm" class="composer">
+                                <textarea id="questionInput" placeholder="Ask a question..." required></textarea>
+                                <button id="sendButton" type="submit">Send</button>
+                            </form>
+                        </div>
+                        <aside class="panel">
+                            <h2>Retrieval Rules</h2>
+                            <p class="section-subtitle">Answers are grounded only in retrieved document context. If the information is missing, the assistant returns the fallback response.</p>
+                        </aside>
+                    </div>
+                </section>
+
+                <section class="section" data-section="history">
+                    <div class="panel">
+                        <h2>Chat History</h2>
+                        <p class="section-subtitle">Conversation records loaded from PostgreSQL for this authenticated user.</p>
+                    </div>
+                    <div id="historyList" class="history-list"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div id="toast" class="toast" role="status"></div>
+    <script type="module" src="/ui/assets/dashboard.js"></script>
+</body>
+</html>

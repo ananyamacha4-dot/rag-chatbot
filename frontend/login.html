@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | RAG Assistant</title>
+    <link rel="stylesheet" href="/ui/assets/app.css">
+</head>
+<body>
+    <main class="auth-shell">
+        <section class="auth-card">
+            <h1>Welcome Back</h1>
+            <p>Sign in to upload documents, chat with your knowledge base, and review PostgreSQL-backed history.</p>
+
+            <form id="loginForm" class="form-stack">
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input id="username" class="input" type="text" autocomplete="username" required>
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" class="input" type="password" autocomplete="current-password" required>
+                </div>
+
+                <button id="submitButton" type="submit">Login</button>
+                <div id="authStatus" class="section-subtitle" role="status"></div>
+            </form>
+
+            <div class="auth-footer">
+                New here? <a href="/ui/signup.html">Create an account</a>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="/ui/assets/login.js"></script>
+</body>
+</html>

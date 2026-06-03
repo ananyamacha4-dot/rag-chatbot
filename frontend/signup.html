@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup | RAG Assistant</title>
+    <link rel="stylesheet" href="/ui/assets/app.css">
+</head>
+<body>
+    <main class="auth-shell">
+        <section class="auth-card">
+            <h1>Create Account</h1>
+            <p>Set up access to your document assistant workspace.</p>
+
+            <form id="signupForm" class="form-stack">
+                <div class="field">
+                    <label for="username">Username</label>
+                    <input id="username" class="input" type="text" autocomplete="username" required>
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" class="input" type="password" autocomplete="new-password" required>
+                </div>
+
+                <button id="submitButton" type="submit">Create Account</button>
+                <div id="authStatus" class="section-subtitle" role="status"></div>
+            </form>
+
+            <div class="auth-footer">
+                Already have an account? <a href="/ui/login.html">Login</a>
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="/ui/assets/signup.js"></script>
+</body>
+</html>
